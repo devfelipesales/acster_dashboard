@@ -14,11 +14,17 @@ export default function Home() {
         <div
           className={`flex flex-col justify-center rounded-lg bg-slate-50 p-10 ${Fonts.lusitana.className}`}
         >
-          <p className="text-2xl font-bold md:text-3xl">
-            Bem vindo ao GlobalCecy.
+          <Image
+            src="/dashboard.png"
+            alt="dashboard icon"
+            width={40}
+            height={40}
+          ></Image>
+          <p className="mt-2 text-2xl font-bold md:text-3xl">
+            Bem vindo(a) ao GlobalCecy.
           </p>
           <p className="mt-2 w-[16ch] text-2xl md:text-3xl">
-            Esse é um projeto dashboard utilizando Next & TypeScript.
+            Este é um projeto dashboard utilizando Next & TypeScript.
           </p>
           <Link
             href="/"
