@@ -27,7 +27,7 @@ export default function Home() {
             Este é um projeto dashboard utilizando Next & TypeScript.
           </p>
           <Link
-            href="/"
+            href="/dashboard"
             className="mt-8 flex w-fit gap-2 rounded-lg bg-gradient-to-r from-teal-200 to-lime-200 px-5 py-2.5 text-center text-lg font-bold text-gray-900 hover:bg-gradient-to-l hover:from-teal-200 hover:to-lime-200 focus:outline-none focus:ring-4 focus:ring-lime-200 dark:focus:ring-teal-700 md:text-xl"
           >
             Entrar
