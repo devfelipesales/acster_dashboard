@@ -21,7 +21,7 @@ export default function Home() {
             height={40}
           ></Image>
           <p className="mt-2 text-2xl font-bold md:text-3xl">
-            Bem vindo(a) ao GlobalCecy.
+            Bem vindo(a) a AcsterCo.
           </p>
           <p className="mt-2 w-[16ch] text-2xl md:text-3xl">
             Este é um projeto dashboard utilizando Next & TypeScript.

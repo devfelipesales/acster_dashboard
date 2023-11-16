@@ -3,8 +3,8 @@ import "./globals.css";
 import { Fonts } from "./UI/fonts";
 
 export const metadata: Metadata = {
-  title: "Cecy",
-  description: "Cecy Dashboard",
+  title: "Acster",
+  description: "Acster Dashboard",
 };
 
 export default function RootLayout({

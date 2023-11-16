@@ -11,7 +11,7 @@ export default function CecyLogo() {
         <p
           className={`text-4xl font-bold text-white ${Fonts.lusitana.className}`}
         >
-          GlobalCecy
+          AcsterCo.
         </p>
       </div>
     </Link>
