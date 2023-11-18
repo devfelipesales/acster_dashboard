@@ -17,7 +17,7 @@ export default function DashboardPage() {
           <h1 className={`${Fonts.lusitana.className} text-2xl`}>Receita</h1>
           <div className="mt-4 rounded-md bg-emerald-50 p-3">
             <div className="rounded-md bg-white p-5">
-              <RevenueChart />
+              {/* <RevenueChart /> */}
             </div>
             <div className="flex items-center gap-1 py-3 text-slate-500">
               <CalendarIcon className="w-5" />
