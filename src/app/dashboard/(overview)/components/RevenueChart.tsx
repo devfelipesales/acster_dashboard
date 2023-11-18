@@ -18,22 +18,59 @@ export default async function RevenueChart() {
           acc[month] = {
             monthIndex: dateInvoice.getMonth(),
             month: month,
-            amount: 0,
+            receita: 0,
           };
         }
 
-        acc[month].amount += Number(amount);
+        acc[month].receita += Number(amount);
 
         return acc;
       },
       {},
     );
 
-    return Object.values(dataChart).map((item) => item);
+    let arrDataChart: IChart[] = [];
+    let arrMonthIndexChart: number[] = [];
+
+    Object.values(dataChart).map((item) => {
+      arrDataChart.push(item);
+      arrMonthIndexChart.push(item.monthIndex);
+    });
+
+    return {
+      arrDataChart,
+      arrMonthIndexChart,
+    };
   }
 
-  const dataChart = createDataChart(invoices);
-  dataChart.sort((a, b) => a.monthIndex - b.monthIndex);
+  const data = createDataChart(invoices);
 
-  return <Chart dataChart={dataChart} />;
+  // Verifica se no array se há todos os meses do ano. Caso não haja, adiciona o mês com valor 0.
+  if (data.arrMonthIndexChart.length < 12) {
+    let dataChart = [...data.arrDataChart];
+    // Monta array com todos os meses do ano.
+    const arrMonths = Array.from({ length: 12 }, (e, i) => {
+      return {
+        monthIndex: i,
+        month: new Date(0, i, 1).toLocaleDateString("pt-BR", {
+          month: "short",
+        }),
+      };
+    });
+
+    // Adiciona ao array final o mês que não estava com valor zerado para aparecer no gráfico todos os meses.
+    arrMonths.forEach((item) => {
+      if (!data.arrMonthIndexChart.includes(item.monthIndex)) {
+        dataChart.push({
+          monthIndex: item.monthIndex,
+          month: item.month,
+          receita: 0,
+        });
+      }
+    });
+
+    dataChart.sort((a, b) => a.monthIndex - b.monthIndex);
+
+    return <Chart dataChart={dataChart} />;
+  }
 }

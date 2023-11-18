@@ -10,6 +10,7 @@ const config: Config = {
     extend: {
       gridTemplateColumns: {
         "auto-2": "auto 1fr",
+        "custom-1": "1.5fr 1fr",
       },
       screens: {
         xs: "576px",
