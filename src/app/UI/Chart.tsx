@@ -4,8 +4,6 @@ import ReactApexChart from "react-apexcharts";
 import { IChart } from "../lib/definitions";
 import { ApexOptions } from "apexcharts";
 
-// interface MyComponentProps {}
-
 export default function Chart({ dataChart }: { dataChart: IChart[] }) {
   console.log(dataChart);
 
