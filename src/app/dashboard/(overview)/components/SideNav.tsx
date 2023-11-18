@@ -1,22 +1,28 @@
-import CecyLogo from "@/app/UI/CecyLogo";
+import AcsterLogo from "@/app/UI/AcsterLogo";
 import React from "react";
 import NavLinks from "./NavLinks";
 import { PowerIcon } from "@heroicons/react/24/outline";
 
 export default function SideNav() {
   return (
-    <div className="grid place-content-start gap-2">
-      <div className="flex h-20 w-full shrink-0 items-end rounded-lg bg-emerald-300 p-3 md:h-52">
-        <CecyLogo />
-      </div>
-      <div className="grid grid-cols-4 gap-2 md:grid-cols-1">
-        <NavLinks />
-        <form action="" className="mt-0 md:mt-[100%]">
-          <button className="flex w-full items-center justify-center gap-3 rounded-lg bg-slate-50 p-3 font-semibold hover:bg-teal-100 hover:text-emerald-700  md:justify-normal">
-            <PowerIcon className="w-6" />
-            <p className="hidden xs:block">Sair</p>
-          </button>
-        </form>
+    <div className="h-full w-full pb-3 pl-3 pr-3 pt-3 md:max-w-[15rem] md:pr-0">
+      <div className="flex h-full flex-col gap-2 ">
+        <div className="flex h-20 w-full shrink-0 items-end rounded-lg bg-emerald-300 p-3 md:h-52">
+          <AcsterLogo />
+        </div>
+        <div className="flex h-full grow flex-row gap-2 md:flex-col">
+          <NavLinks />
+          {/* OBS: Manter o último item do menu na parte de baixo da tela:  */}
+          {/* Pode-se criar uma div fazia para preencher o espaço entre os items de cima e o item que ficará em baixo */}
+          {/* Ou utilizar margin-top:auto no último item */}
+          {/* <div className="hidden h-auto w-full grow rounded-md bg-white md:block"></div> */}
+          <form action="" className="md:mt-auto">
+            <button className="flex w-full grow items-center justify-center gap-3 rounded-lg bg-slate-50 p-3 font-semibold hover:bg-teal-100 hover:text-emerald-700 md:justify-normal">
+              <PowerIcon className="w-6" />
+              <p className="hidden md:block">Sair</p>
+            </button>
+          </form>
+        </div>
       </div>
     </div>
   );

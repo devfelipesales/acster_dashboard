@@ -1,18 +1,17 @@
 import { Fonts } from "@/app/UI/fonts";
 import React from "react";
 import { CardWrapper } from "./components/Card";
-import { ArrowPathIcon, CalendarIcon } from "@heroicons/react/24/outline";
-import Image from "next/image";
+import { CalendarIcon } from "@heroicons/react/24/outline";
 import LastInvoices from "./components/LatestSales";
 
 export default function DashboardPage() {
   return (
-    <section className="grid gap-10 p-8 lg:gap-16">
+    <section className="mt-8 flex flex-col gap-10 overflow-hidden p-3 md:mt-0 md:p-8 lg:gap-16">
       <div className="">
         <h1 className={`${Fonts.lusitana.className} text-2xl`}>Dashboard</h1>
         <CardWrapper />
       </div>
-      <div className=" grid gap-4 lg:grid-cols-2">
+      <div className=" grid gap-10 lg:grid-cols-2  lg:gap-4">
         <div className="">
           <h1 className={`${Fonts.lusitana.className} text-2xl`}>Receita</h1>
           <div className="mt-4 rounded-md bg-emerald-50 p-3">

@@ -3,7 +3,7 @@ import SVGLogo from "./SVGLogo";
 import { Fonts } from "./fonts";
 import Link from "next/link";
 
-export default function CecyLogo() {
+export default function AcsterLogo() {
   return (
     <Link href="/">
       <div className="flex items-center gap-1">

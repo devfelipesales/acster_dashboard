@@ -1,5 +1,5 @@
 import Image from "next/image";
-import CecyLogo from "./UI/CecyLogo";
+import CecyLogo from "./UI/AcsterLogo";
 import Link from "next/link";
 import { ArrowRightIcon } from "@heroicons/react/24/outline";
 import { Fonts } from "./UI/fonts";

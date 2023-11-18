@@ -14,7 +14,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt-BR">
-      <body className={`${Fonts.nunito.className} box-border p-4 antialiased`}>
+      <body className={`${Fonts.nunito.className} antialiased`}>
         {children}
       </body>
     </html>

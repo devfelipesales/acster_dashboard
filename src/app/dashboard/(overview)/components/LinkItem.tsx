@@ -26,14 +26,14 @@ export default function LinkItem({
     <Link
       href={href}
       className={clsx(
-        "flex items-center justify-center gap-3 rounded-lg bg-slate-50 p-3 font-semibold hover:bg-teal-100 hover:text-emerald-700 md:justify-normal",
+        "flex grow items-center justify-center gap-3 rounded-lg  bg-slate-50 p-3 font-semibold hover:bg-teal-100 hover:text-emerald-700 md:grow-0 md:justify-normal ",
         {
           "bg-teal-100  text-emerald-700": pathname === href,
         },
       )}
     >
       <LinkIcon className="w-6" />
-      <p className="xs:block hidden">{text}</p>
+      <p className="hidden xs:block">{text}</p>
     </Link>
   );
 }
