@@ -6,7 +6,7 @@ import { Fonts } from "./UI/fonts";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col gap-3">
+    <main className="flex min-h-screen flex-col gap-5 p-4">
       <div className="flex h-20 w-full shrink-0 items-end rounded-lg bg-emerald-300 p-3 md:h-52">
         <CecyLogo />
       </div>
@@ -21,9 +21,9 @@ export default function Home() {
             height={40}
           ></Image>
           <p className="mt-2 text-2xl font-bold md:text-3xl">
-            Bem vindo(a) a AcsterCo.
+            Bem vindo(a) ao AcsterCo.
           </p>
-          <p className="mt-2 w-[16ch] text-2xl md:text-3xl">
+          <p className="mt-2 w-[18ch] text-2xl md:text-3xl">
             Este é um projeto dashboard utilizando Next & TypeScript.
           </p>
           <Link
