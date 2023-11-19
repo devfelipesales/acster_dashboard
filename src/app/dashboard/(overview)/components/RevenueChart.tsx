@@ -1,10 +1,10 @@
 import Chart from "@/app/UI/Chart";
-import { prismaClient } from "@/app/lib/prisma";
 import { Invoice } from "@prisma/client";
 import { IChart } from "@/app/lib/definitions";
+import { fetchInvoices } from "@/app/lib/fetchData";
 
 export default async function RevenueChart() {
-  const invoices = await prismaClient.invoice.findMany();
+  const invoices = await fetchInvoices();
 
   if (!invoices) return null;
 

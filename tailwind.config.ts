@@ -13,6 +13,8 @@ const config: Config = {
         "custom-1": "1.5fr 1fr",
       },
       screens: {
+        xxxs: "380px",
+        xxs: "480px",
         xs: "576px",
       },
     },

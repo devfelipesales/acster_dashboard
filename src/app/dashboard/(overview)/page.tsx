@@ -2,7 +2,7 @@ import { Fonts } from "@/app/UI/fonts";
 import React from "react";
 import { CardWrapper } from "./components/Card";
 import { CalendarIcon } from "@heroicons/react/24/outline";
-import LastInvoices from "./components/LatestSales";
+import LastInvoices from "./components/LatestInvoices";
 import RevenueChart from "./components/RevenueChart";
 
 export default function DashboardPage() {
@@ -12,11 +12,11 @@ export default function DashboardPage() {
         <h1 className={`${Fonts.lusitana.className} text-2xl`}>Dashboard</h1>
         <CardWrapper />
       </div>
-      <div className=" lg:grid-cols-custom-1 grid gap-10 lg:gap-4">
+      <div className=" xl:grid-cols-custom-1 grid gap-10 xl:gap-4">
         <div className="">
           <h1 className={`${Fonts.lusitana.className} text-2xl`}>Receita</h1>
           <div className="mt-4 rounded-md bg-emerald-50 p-3">
-            <div className="rounded-md bg-white p-5">
+            <div className="xxs:p-5 rounded-md bg-white py-4">
               <RevenueChart />
             </div>
             <div className="flex items-center gap-1 py-3 text-slate-500">
@@ -27,7 +27,7 @@ export default function DashboardPage() {
         </div>
         <div>
           <h1 className={`${Fonts.lusitana.className} text-2xl`}>
-            Últimas Vendas
+            Últimas Faturas
           </h1>
           <LastInvoices />
         </div>

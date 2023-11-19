@@ -1,4 +1,6 @@
 import { Fonts } from "@/app/UI/fonts";
+import { fetchCardData } from "@/app/lib/fetchData";
+import { formatCurrency } from "@/app/lib/utils";
 import {
   BanknotesIcon,
   ClockIcon,
@@ -40,13 +42,33 @@ export function Card({
   );
 }
 
-export function CardWrapper() {
+export async function CardWrapper() {
+  const data = await fetchCardData();
+
+  if (!data) return null;
+
   return (
     <div className="mt-4 grid gap-4 xs:grid-cols-2 lg:grid-cols-4">
-      <Card icon={BanknotesIcon} title="Vendas" value="R$ 50.000" />
-      <Card icon={ClockIcon} title="Processando" value="R$ 15.000" />
-      <Card icon={InboxIcon} title="Total de Vendas" value="55" />
-      <Card icon={UserGroupIcon} title="Total de Clientes" value="10" />
+      <Card
+        icon={BanknotesIcon}
+        title="Recebido"
+        value={formatCurrency(Number(data.paidGroupBy._sum.amount))}
+      />
+      <Card
+        icon={ClockIcon}
+        title="Processando"
+        value={formatCurrency(Number(data.pendingGroupBy._sum.amount))}
+      />
+      <Card
+        icon={InboxIcon}
+        title="Total de Faturas"
+        value={String(data.invoicesCount._count.id)}
+      />
+      <Card
+        icon={UserGroupIcon}
+        title="Total de Clientes"
+        value={String(data.customersCount._count.id)}
+      />
     </div>
   );
 }

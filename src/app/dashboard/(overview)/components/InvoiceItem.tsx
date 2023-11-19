@@ -27,10 +27,14 @@ export default function InvoiceItem({
           />
         </div>
         <div className="ms-4 min-w-0 flex-1">
-          <p className="truncate text-base font-bold text-gray-900">{name}</p>
-          <p className="truncate text-sm text-gray-500 ">{email}</p>
+          <p className="xxs:text-base truncate text-sm font-bold text-gray-900">
+            {name}
+          </p>
+          <p className="xxs:block hidden truncate text-sm text-gray-500 ">
+            {email}
+          </p>
         </div>
-        <div className="inline-flex items-center text-base font-semibold text-gray-900">
+        <div className="xxs:text-base xxxs:text-sm xxxs:font-semibold inline-flex items-center text-xs font-bold text-gray-900">
           {value}
         </div>
       </div>
