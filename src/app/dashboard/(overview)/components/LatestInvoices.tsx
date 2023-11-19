@@ -16,7 +16,7 @@ export default async function LastInvoices() {
         <div className="rounded-lg  bg-white p-4 ">
           <div className="mb-4 flex place-content-end">
             <Link
-              href="/invoices"
+              href="/dashboard/invoices"
               className="text-sm font-medium text-blue-600 hover:underline dark:text-blue-500"
             >
               Ver todas
