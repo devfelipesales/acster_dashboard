@@ -5,67 +5,8 @@ import Image from "next/image";
 export default function TableCustomers({ data }: { data: ITableCustomers[] }) {
   return (
     <>
-      <div className="relative hidden overflow-x-auto rounded-lg lg:block">
-        <table className="w-full border-x-8 border-y-8 border-gray-50 text-left text-sm text-gray-500">
-          <thead className="bg-gray-50 text-xs uppercase text-gray-700">
-            <tr>
-              <th scope="col" className="px-6 py-3">
-                Nome
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Email
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Total de Faturas
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Total Pendente
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Total Pago
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {data.map((customer) => {
-              return (
-                <tr className="border-b bg-white" key={customer.email}>
-                  <th
-                    scope="row"
-                    className="flex items-center gap-2 whitespace-nowrap px-6 py-4 font-medium text-gray-900"
-                  >
-                    <div className="flex-shrink-0">
-                      <Image
-                        className="h-8 rounded-full"
-                        src={customer.imageUrl}
-                        alt={`${customer.name} imagem perfil`}
-                        width={32}
-                        height={32}
-                      />
-                    </div>
-                    {customer.name}
-                  </th>
-                  <td className="px-6 py-4">{customer.email}</td>
-                  <td className="px-6 py-4 text-center">
-                    {customer.countInvoices}
-                  </td>
-                  <td className="px-6 py-4">
-                    {formatCurrency(customer.totalPeding)}
-                  </td>
-                  <td className="px-6 py-4">
-                    {formatCurrency(customer.totalPaid)}
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
-      </div>
-      {/* // --------------------------------------------------------
-// < 1024px
-// --------------------------------------------------------  */}
       <div className="block lg:hidden">
-        {data.map((customer) => {
+        {data?.map((customer) => {
           return (
             <div
               key={customer.email}
@@ -108,6 +49,65 @@ export default function TableCustomers({ data }: { data: ITableCustomers[] }) {
             </div>
           );
         })}
+      </div>
+
+      {/*  > 1024px */}
+
+      <div className="relative hidden overflow-x-auto rounded-lg lg:block">
+        <table className="w-full border-x-8 border-y-8 border-gray-50 text-left text-sm text-gray-500">
+          <thead className="bg-gray-50 text-xs uppercase text-gray-700">
+            <tr>
+              <th scope="col" className="px-6 py-3">
+                Nome
+              </th>
+              <th scope="col" className="px-6 py-3">
+                Email
+              </th>
+              <th scope="col" className="px-6 py-3">
+                Total de Faturas
+              </th>
+              <th scope="col" className="px-6 py-3">
+                Total Pendente
+              </th>
+              <th scope="col" className="px-6 py-3">
+                Total Pago
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {data?.map((customer) => {
+              return (
+                <tr className="border-b bg-white" key={customer.email}>
+                  <th
+                    scope="row"
+                    className="flex items-center gap-2 whitespace-nowrap px-6 py-4 font-medium text-gray-900"
+                  >
+                    <div className="flex-shrink-0">
+                      <Image
+                        className="h-8 rounded-full"
+                        src={customer.imageUrl}
+                        alt={`${customer.name} imagem perfil`}
+                        width={32}
+                        height={32}
+                      />
+                    </div>
+                    {customer.name}
+                  </th>
+                  <td className="px-6 py-4">{customer.email}</td>
+                  <td className="px-6 py-4 text-center">
+                    {customer.countInvoices}
+                  </td>
+                  <td className="px-6 py-4">
+                    {formatCurrency(customer.totalPeding)}
+                  </td>
+                  <td className="px-6 py-4">
+                    {formatCurrency(customer.totalPaid)}
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
       </div>
     </>
   );

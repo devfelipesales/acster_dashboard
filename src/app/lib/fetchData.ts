@@ -21,6 +21,17 @@ export async function fetchLatestInvoices() {
   });
 }
 
+export async function fetchFilteredInvoices() {
+  return await prismaClient.invoice.findMany({
+    orderBy: {
+      date: "desc",
+    },
+    include: {
+      customer: true,
+    },
+  });
+}
+
 export async function fetchCardData() {
   const paidGroupBy = await prismaClient.invoice.aggregate({
     _sum: {

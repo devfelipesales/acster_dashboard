@@ -23,13 +23,12 @@ export default function Search({ placeholder }: { placeholder: string }) {
       <div className="pointer-events-none absolute inset-y-0 start-0 flex items-center ps-3.5">
         <MagnifyingGlassIcon className="h-4 w-4 text-gray-500" />
       </div>
+
       <input
-        // onChange={(event) => handleSearch(event.target.value)}
-        // defaultValue={searchParams.get("query")?.toString()}
         type="text"
         id="search"
         name="search"
-        className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 ps-10 text-sm text-gray-900  focus:outline-2 focus:outline-teal-200"
+        className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 ps-10 text-sm text-gray-900 focus:border-emerald-300 focus:ring-emerald-300"
         placeholder={placeholder}
       />
     </div>

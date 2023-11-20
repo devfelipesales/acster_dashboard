@@ -1,5 +1,5 @@
 import Image from "next/image";
-import CecyLogo from "./UI/AcsterLogo";
+import AcsterLogo from "./UI/AcsterLogo";
 import Link from "next/link";
 import { ArrowRightIcon } from "@heroicons/react/24/outline";
 import { Fonts } from "./UI/fonts";
@@ -8,7 +8,7 @@ export default function Home() {
   return (
     <main className="flex min-h-screen flex-col gap-5 p-4">
       <div className="flex h-20 w-full shrink-0 items-end rounded-lg bg-emerald-300 p-3 md:h-52">
-        <CecyLogo />
+        <AcsterLogo />
       </div>
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
         <div
