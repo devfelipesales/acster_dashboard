@@ -71,7 +71,7 @@ export async function fetchCardData() {
   };
 }
 
-export async function fetchCustomers() {
+export async function fetchTableCustomers() {
   const customers = await prismaClient.customers.findMany({
     select: {
       name: true,
@@ -113,4 +113,16 @@ export async function fetchCustomers() {
   });
 
   return data;
+}
+
+export async function fetchCustomers() {
+  return await prismaClient.customers.findMany();
+}
+
+export async function fetchInvoiceById(id: string) {
+  return await prismaClient.invoice.findUnique({
+    where: {
+      id: id,
+    },
+  });
 }

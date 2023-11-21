@@ -34,10 +34,10 @@ export default function BtnDelete({ id }: { id: string }) {
             </h3>
             <div className="flex justify-center gap-4">
               <Button color="failure" onClick={() => setOpenModal(false)}>
-                {"Yes, I'm sure"}
+                {"Sim, deletar"}
               </Button>
               <Button color="gray" onClick={() => setOpenModal(false)}>
-                No, cancel
+                Não, cancelar
               </Button>
             </div>
           </div>
