@@ -31,7 +31,7 @@ export default function TableInvoices({
                     />
                     <div className="flex flex-col">
                       <p>{invoice.customer.name}</p>
-                      <p className="xxxs:block hidden text-sm text-gray-500">
+                      <p className="hidden text-sm text-gray-500 xxxs:block">
                         {invoice.customer.email}
                       </p>
                     </div>
@@ -42,17 +42,24 @@ export default function TableInvoices({
                 </div>
               </div>
               <div className="flex w-full items-center justify-between border-b py-5">
-                <p className="xxxs:text-base text-sm font-medium">
+                <p className="text-sm font-medium xxxs:text-base">
                   {formatCurrency(Number(invoice.amount))}
                 </p>
 
                 <div className="flex w-1/2 place-content-end gap-2">
                   <UpdateInvoice id={invoice.id} />
-                  <BtnDelete id={invoice.id} />
+                  <BtnDelete
+                    id={invoice.id}
+                    imageUrl={invoice.customer.imageUrl}
+                    name={invoice.customer.name}
+                    status={invoice.status}
+                    amount={formatCurrency(Number(invoice.amount))}
+                    date={formatDateToLocal(invoice.updatedAt)}
+                  />
                 </div>
               </div>
               <div className="pt-4 text-sm">
-                <p>{formatDateToLocal(invoice.date)}</p>
+                <p>{formatDateToLocal(invoice.updatedAt)}</p>
               </div>
             </div>
           );
@@ -109,7 +116,7 @@ export default function TableInvoices({
                     {formatCurrency(Number(invoice.amount))}
                   </td>
                   <td className="px-6 py-4">
-                    {formatDateToLocal(invoice.date)}
+                    {formatDateToLocal(invoice.updatedAt)}
                   </td>
                   <td className="px-6 py-4">
                     <InvoiceStatus status={invoice.status} />
@@ -117,7 +124,14 @@ export default function TableInvoices({
                   <td className="whitespace-nowrap py-3 pl-6 pr-3">
                     <div className="flex justify-end gap-3">
                       <UpdateInvoice id={invoice.id} />
-                      <BtnDelete id={invoice.id} />
+                      <BtnDelete
+                        id={invoice.id}
+                        imageUrl={invoice.customer.imageUrl}
+                        name={invoice.customer.name}
+                        status={invoice.status}
+                        amount={formatCurrency(Number(invoice.amount))}
+                        date={formatDateToLocal(invoice.updatedAt)}
+                      />
                     </div>
                   </td>
                 </tr>
