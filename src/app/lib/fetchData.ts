@@ -1,7 +1,9 @@
 import { prismaClient } from "./prisma";
 import { ITableCustomers } from "./definitions";
+import { unstable_noStore as noStore } from "next/cache";
 
 export async function fetchInvoices() {
+  noStore();
   return await prismaClient.invoice.findMany({
     orderBy: {
       updatedAt: "desc",
@@ -10,6 +12,7 @@ export async function fetchInvoices() {
 }
 
 export async function fetchLatestInvoices() {
+  noStore();
   return prismaClient.invoice.findMany({
     take: 6,
     orderBy: {
@@ -22,6 +25,7 @@ export async function fetchLatestInvoices() {
 }
 
 export async function fetchFilteredInvoices() {
+  noStore();
   return await prismaClient.invoice.findMany({
     orderBy: {
       updatedAt: "desc",
@@ -33,6 +37,7 @@ export async function fetchFilteredInvoices() {
 }
 
 export async function fetchCardData() {
+  noStore();
   const paidGroupBy = await prismaClient.invoice.aggregate({
     _sum: {
       amount: true,
@@ -72,6 +77,7 @@ export async function fetchCardData() {
 }
 
 export async function fetchTableCustomers() {
+  noStore();
   const customers = await prismaClient.customers.findMany({
     select: {
       name: true,
@@ -120,6 +126,7 @@ export async function fetchCustomers() {
 }
 
 export async function fetchInvoiceById(id: string) {
+  noStore();
   return await prismaClient.invoice.findUnique({
     where: {
       id: id,
