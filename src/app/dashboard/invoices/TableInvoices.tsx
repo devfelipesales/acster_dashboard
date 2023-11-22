@@ -1,15 +1,12 @@
 import BtnDelete from "@/app/UI/invoices/btnDeleteInvoice";
 import { UpdateInvoice } from "@/app/UI/invoices/buttons";
 import InvoiceStatus from "@/app/UI/invoices/status";
-import { ITableInvoices } from "@/app/lib/definitions";
+import { fetchFilteredInvoices } from "@/app/lib/fetchData";
 import { formatCurrency, formatDateToLocal } from "@/app/lib/utils";
 import Image from "next/image";
 
-export default function TableInvoices({
-  invoices,
-}: {
-  invoices: ITableInvoices[];
-}) {
+export default async function TableInvoices() {
+  const invoices = await fetchFilteredInvoices();
   return (
     <>
       <div className="block lg:hidden">

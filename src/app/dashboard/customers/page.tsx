@@ -1,17 +1,18 @@
 import Search from "@/app/UI/Search";
 import { Fonts } from "@/app/UI/fonts";
 import TableCustomers from "./TableCustomers";
-import { fetchTableCustomers } from "@/app/lib/fetchData";
+import { Suspense } from "react";
+import { CustomerTableSkeleton } from "@/app/UI/skeletons";
 
 export default async function CustomersPage() {
-  const customers = await fetchTableCustomers();
-
   return (
     <main className="mt-8 flex flex-col gap-8 overflow-hidden p-3 md:mt-0 md:p-8 ">
       <h1 className={`${Fonts.lusitana.className} text-2xl`}>Clientes</h1>
       <div className="flex grow flex-col gap-3">
         <Search placeholder="Pequise clientes..." />
-        <TableCustomers data={customers} />
+        <Suspense fallback={<CustomerTableSkeleton />}>
+          <TableCustomers />
+        </Suspense>
       </div>
     </main>
   );

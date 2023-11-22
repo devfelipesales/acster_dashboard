@@ -2,6 +2,8 @@ import Chart from "@/app/UI/Chart";
 import { Invoice } from "@prisma/client";
 import { IChart } from "@/app/lib/definitions";
 import { fetchInvoices } from "@/app/lib/fetchData";
+import { Fonts } from "@/app/UI/fonts";
+import { CalendarIcon } from "@heroicons/react/24/outline";
 
 export default async function RevenueChart() {
   const invoices = await fetchInvoices();

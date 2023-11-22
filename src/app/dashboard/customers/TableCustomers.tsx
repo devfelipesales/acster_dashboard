@@ -1,12 +1,13 @@
-import { ITableCustomers } from "@/app/lib/definitions";
 import { formatCurrency } from "@/app/lib/utils";
 import Image from "next/image";
+import { fetchTableCustomers } from "@/app/lib/fetchData";
 
-export default function TableCustomers({ data }: { data: ITableCustomers[] }) {
+export default async function TableCustomers() {
+  const customers = await fetchTableCustomers();
   return (
     <>
       <div className="block lg:hidden">
-        {data?.map((customer) => {
+        {customers?.map((customer) => {
           return (
             <div
               key={customer.email}
@@ -32,13 +33,13 @@ export default function TableCustomers({ data }: { data: ITableCustomers[] }) {
               <div className="flex w-full items-center justify-between border-b py-5">
                 <div className="flex w-1/2 flex-col">
                   <p className="text-xs">Pendente</p>
-                  <p className="xxxs:text-base text-sm font-medium">
+                  <p className="text-sm font-medium xxxs:text-base">
                     {formatCurrency(customer.totalPeding)}
                   </p>
                 </div>
-                <div className="flex w-1/2 flex-col">
+                <div className="flex w-1/2 flex-col items-end">
                   <p className="text-xs">Pago</p>
-                  <p className="xxxs:text-base text-sm font-medium">
+                  <p className="text-sm font-medium xxxs:text-base">
                     {formatCurrency(customer.totalPaid)}
                   </p>
                 </div>
@@ -75,7 +76,7 @@ export default function TableCustomers({ data }: { data: ITableCustomers[] }) {
             </tr>
           </thead>
           <tbody>
-            {data?.map((customer) => {
+            {customers?.map((customer) => {
               return (
                 <tr className="border-b bg-white" key={customer.email}>
                   <th
