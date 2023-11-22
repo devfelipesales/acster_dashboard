@@ -4,7 +4,7 @@ import { ITableCustomers } from "./definitions";
 export async function fetchInvoices() {
   return await prismaClient.invoice.findMany({
     orderBy: {
-      date: "desc",
+      updatedAt: "desc",
     },
   });
 }
@@ -13,7 +13,7 @@ export async function fetchLatestInvoices() {
   return prismaClient.invoice.findMany({
     take: 6,
     orderBy: {
-      date: "desc",
+      updatedAt: "desc",
     },
     include: {
       customer: true,
@@ -24,7 +24,7 @@ export async function fetchLatestInvoices() {
 export async function fetchFilteredInvoices() {
   return await prismaClient.invoice.findMany({
     orderBy: {
-      date: "desc",
+      updatedAt: "desc",
     },
     include: {
       customer: true,

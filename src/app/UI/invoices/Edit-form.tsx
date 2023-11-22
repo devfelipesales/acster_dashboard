@@ -7,6 +7,7 @@ import {
 
 import Link from "next/link";
 import { Customers, Invoice } from "@prisma/client";
+import { updateInvoice } from "@/app/lib/actions";
 
 export default function EditForm({
   customers,
@@ -15,8 +16,10 @@ export default function EditForm({
   customers: Customers[];
   invoice: Invoice;
 }) {
+  const updateInvoiceWithId = updateInvoice.bind(null, invoice.id);
+
   return (
-    <form className="">
+    <form action={updateInvoiceWithId}>
       <div className="rounded-md bg-emerald-50 p-4 md:p-6">
         {/* Customer Name */}
         <div className="mb-4">

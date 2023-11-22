@@ -18,7 +18,7 @@ export default async function CreateInvoicePage({
 
   return (
     <main className="mt-8 flex flex-col gap-8 overflow-hidden p-3 md:mt-0 md:p-8">
-      <h1 className={`${Fonts.lusitana.className} text-2xl`}>Criar Fatura</h1>
+      <h1 className={`${Fonts.lusitana.className} text-2xl`}>Editar Fatura</h1>
       <div className="flex grow flex-col gap-3">
         <EditForm customers={customers} invoice={invoice} />
       </div>

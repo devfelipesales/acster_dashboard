@@ -7,10 +7,11 @@ import {
 
 import Link from "next/link";
 import { Customers } from "@prisma/client";
+import { createInvoice } from "@/app/lib/actions";
 
 export default function CreateForm({ customers }: { customers: Customers[] }) {
   return (
-    <form className="">
+    <form action={createInvoice}>
       <div className="rounded-md bg-emerald-50 p-4 md:p-6">
         {/* Customer Name */}
         <div className="mb-4">
