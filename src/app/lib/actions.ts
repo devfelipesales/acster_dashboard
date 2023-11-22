@@ -3,6 +3,7 @@
 import { redirect } from "next/navigation";
 import { prismaClient } from "./prisma";
 import { InvoiceStatus } from "@prisma/client";
+import { revalidatePath } from "next/cache";
 
 export async function createInvoice(formData: FormData) {
   const customerId = formData.get("customerId");
@@ -33,6 +34,7 @@ export async function createInvoice(formData: FormData) {
   }
 
   console.log("Fatura Criada com sucesso");
+  revalidatePath("/dashboard/invoices");
   redirect("/dashboard/invoices");
 }
 
@@ -68,6 +70,7 @@ export async function updateInvoice(id: string, formData: FormData) {
   }
 
   console.log("Fatura Atualizada com sucesso");
+  revalidatePath("/dashboard/invoices");
   redirect("/dashboard/invoices");
 }
 
@@ -86,5 +89,6 @@ export async function DeleteInvoice(id: string, formData: FormData) {
   }
 
   console.log(`Fatura ${id} deletada com sucesso`);
+  revalidatePath("/dashboard/invoices");
   redirect("/dashboard/invoices");
 }
