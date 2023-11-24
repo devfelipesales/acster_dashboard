@@ -1,6 +1,7 @@
 import { prismaClient } from "./prisma";
 import { ITableCustomers } from "./definitions";
 import { unstable_noStore as noStore } from "next/cache";
+import { InvoiceStatus } from "@prisma/client";
 
 export async function fetchInvoices() {
   noStore();
@@ -24,16 +25,54 @@ export async function fetchLatestInvoices() {
   });
 }
 
-export async function fetchFilteredInvoices() {
+export async function fetchFilteredInvoices(query: string, status: string) {
   noStore();
-  return await prismaClient.invoice.findMany({
-    orderBy: {
-      updatedAt: "desc",
-    },
-    include: {
-      customer: true,
-    },
-  });
+
+  if (!status) {
+    return await prismaClient.invoice.findMany({
+      where: {
+        customer: {
+          name: {
+            contains: query,
+            mode: "insensitive",
+          },
+          email: {
+            contains: query,
+            mode: "insensitive",
+          },
+        },
+      },
+      orderBy: {
+        updatedAt: "desc",
+      },
+      include: {
+        customer: true,
+      },
+    });
+  } else {
+    const l_status = status as InvoiceStatus;
+    return await prismaClient.invoice.findMany({
+      where: {
+        status: l_status,
+        customer: {
+          name: {
+            contains: query,
+            mode: "insensitive",
+          },
+          email: {
+            contains: query,
+            mode: "insensitive",
+          },
+        },
+      },
+      orderBy: {
+        updatedAt: "desc",
+      },
+      include: {
+        customer: true,
+      },
+    });
+  }
 }
 
 export async function fetchCardData() {

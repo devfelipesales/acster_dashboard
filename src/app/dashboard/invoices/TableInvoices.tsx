@@ -1,3 +1,4 @@
+import ToastDataNotFound from "@/app/UI/ToastDataNotFound";
 import BtnDelete from "@/app/UI/invoices/btnDeleteInvoice";
 import { UpdateInvoice } from "@/app/UI/invoices/buttons";
 import InvoiceStatus from "@/app/UI/invoices/status";
@@ -5,11 +6,20 @@ import { fetchFilteredInvoices } from "@/app/lib/fetchData";
 import { formatCurrency, formatDateToLocal } from "@/app/lib/utils";
 import Image from "next/image";
 
-export default async function TableInvoices() {
-  const invoices = await fetchFilteredInvoices();
+export default async function TableInvoices({
+  query,
+  status,
+  currentPage,
+}: {
+  query: string;
+  status: string;
+  currentPage: number;
+}) {
+  const invoices = await fetchFilteredInvoices(query, status);
   return (
     <>
       <div className="block lg:hidden">
+        {!invoices.length && <ToastDataNotFound />}
         {invoices?.map((invoice) => {
           return (
             <div
@@ -136,6 +146,7 @@ export default async function TableInvoices() {
             })}
           </tbody>
         </table>
+        {!invoices.length && <ToastDataNotFound />}
       </div>
     </>
   );
