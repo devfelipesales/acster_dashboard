@@ -1,3 +1,5 @@
+"use client";
+
 import {
   CheckIcon,
   ClockIcon,
@@ -7,7 +9,8 @@ import {
 
 import Link from "next/link";
 import { Customers, Invoice } from "@prisma/client";
-import { updateInvoice } from "@/app/lib/actions";
+import { StateUpdateInvoice, updateInvoice } from "@/app/lib/actions";
+import { useFormState } from "react-dom";
 
 export default function EditForm({
   customers,
@@ -17,9 +20,15 @@ export default function EditForm({
   invoice: Invoice;
 }) {
   const updateInvoiceWithId = updateInvoice.bind(null, invoice.id);
+  const initialState: StateUpdateInvoice = {
+    errors: {},
+    message: null,
+    error: false,
+  };
+  const [state, dispatch] = useFormState(updateInvoiceWithId, initialState);
 
   return (
-    <form action={updateInvoiceWithId}>
+    <form action={dispatch}>
       <div className="rounded-md bg-emerald-50 p-4 md:p-6">
         {/* Customer Name */}
         <div className="mb-4">
@@ -48,17 +57,17 @@ export default function EditForm({
             </select>
             <UserCircleIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500" />
           </div>
-          {/* {state.errors?.customerId ? (
-        <div
-          id="customer-error"
-          aria-live="polite"
-          className="mt-2 text-sm text-red-500"
-        >
-          {state.errors.customerId.map((error: string) => (
-            <p key={error}>{error}</p>
-          ))}
-        </div>
-      ) : null} */}
+          {state.errors?.customerId ? (
+            <div
+              id="customer-error"
+              aria-live="polite"
+              className="mt-2 text-sm text-red-500"
+            >
+              {state.errors.customerId.map((error: string) => (
+                <p key={error}>{error}</p>
+              ))}
+            </div>
+          ) : null}
         </div>
 
         {/* Invoice Amount */}
@@ -84,17 +93,17 @@ export default function EditForm({
               <CurrencyDollarIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
             </div>
           </div>
-          {/* {state.errors?.amount ? (
-        <div
-          id="amount-error"
-          aria-live="polite"
-          className="mt-2 text-sm text-red-500"
-        >
-          {state.errors.amount.map((error: string) => (
-            <p key={error}>{error}</p>
-          ))}
-        </div>
-      ) : null} */}
+          {state.errors?.amount ? (
+            <div
+              id="amount-error"
+              aria-live="polite"
+              className="mt-2 text-sm text-red-500"
+            >
+              {state.errors.amount.map((error: string) => (
+                <p key={error}>{error}</p>
+              ))}
+            </div>
+          ) : null}
         </div>
 
         {/* Invoice Status */}
@@ -110,7 +119,8 @@ export default function EditForm({
                   name="status"
                   type="radio"
                   value="PENDING"
-                  checked={invoice.status === "PENDING"}
+                  defaultChecked={invoice.status === "PENDING"}
+                  required
                   aria-describedby="status-error"
                   className="h-4 w-4 border-gray-300 bg-gray-100 text-gray-600 focus:ring-2 focus:ring-gray-500"
                 />
@@ -127,7 +137,8 @@ export default function EditForm({
                   name="status"
                   type="radio"
                   value="PAID"
-                  checked={invoice.status === "PAID"}
+                  defaultChecked={invoice.status === "PAID"}
+                  required
                   aria-describedby="status-error"
                   className="h-4 w-4 border-gray-300 bg-gray-100 text-gray-600 focus:ring-2 focus:ring-gray-500"
                 />
@@ -140,23 +151,23 @@ export default function EditForm({
               </div>
             </div>
           </div>
-          {/* {state.errors?.status ? (
-        <div
-          id="status-error"
-          aria-live="polite"
-          className="mt-2 text-sm text-red-500"
-        >
-          {state.errors.status.map((error: string) => (
-            <p key={error}>{error}</p>
-          ))}
-        </div>
-      ) : null} */}
+          {state.errors?.status ? (
+            <div
+              id="status-error"
+              aria-live="polite"
+              className="mt-2 text-sm text-red-500"
+            >
+              {state.errors.status.map((error: string) => (
+                <p key={error}>{error}</p>
+              ))}
+            </div>
+          ) : null}
         </fieldset>
-        {/* {state?.message && (
-      <p id="message-error" className="mt-2 text-sm text-red-500">
-        {state?.message}
-      </p>
-    )} */}
+        {state?.message && (
+          <p id="message-error" className="mt-2 text-sm text-red-500">
+            {state?.message}
+          </p>
+        )}
       </div>
       <div className="mt-6 flex justify-end gap-4">
         <Link

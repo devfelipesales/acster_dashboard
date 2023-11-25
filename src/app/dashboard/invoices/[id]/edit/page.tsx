@@ -3,7 +3,7 @@ import EditForm from "@/app/UI/invoices/Edit-form";
 import { fetchCustomers, fetchInvoiceById } from "@/app/lib/fetchData";
 import { notFound } from "next/navigation";
 
-export default async function CreateInvoicePage({
+export default async function EditInvoicePage({
   params,
 }: {
   params: { id: string };

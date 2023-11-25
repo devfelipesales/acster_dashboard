@@ -1,3 +1,5 @@
+"use client";
+
 import {
   CheckIcon,
   ClockIcon,
@@ -7,11 +9,15 @@ import {
 
 import Link from "next/link";
 import { Customers } from "@prisma/client";
-import { createInvoice } from "@/app/lib/actions";
+import { State, createInvoice } from "@/app/lib/actions";
+import { useFormState } from "react-dom";
 
 export default function CreateForm({ customers }: { customers: Customers[] }) {
+  const initialState: State = { errors: {}, message: null };
+  const [state, dispatch] = useFormState(createInvoice, initialState);
+
   return (
-    <form action={createInvoice}>
+    <form action={dispatch}>
       <div className="rounded-md bg-emerald-50 p-4 md:p-6">
         {/* Customer Name */}
         <div className="mb-4">
@@ -40,17 +46,17 @@ export default function CreateForm({ customers }: { customers: Customers[] }) {
             </select>
             <UserCircleIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500" />
           </div>
-          {/* {state.errors?.customerId ? (
-        <div
-          id="customer-error"
-          aria-live="polite"
-          className="mt-2 text-sm text-red-500"
-        >
-          {state.errors.customerId.map((error: string) => (
-            <p key={error}>{error}</p>
-          ))}
-        </div>
-      ) : null} */}
+          {state.errors?.customerId ? (
+            <div
+              id="customer-error"
+              aria-live="polite"
+              className="mt-2 text-sm text-red-500"
+            >
+              {state.errors.customerId.map((error: string) => (
+                <p key={error}>{error}</p>
+              ))}
+            </div>
+          ) : null}
         </div>
 
         {/* Invoice Amount */}
@@ -75,17 +81,17 @@ export default function CreateForm({ customers }: { customers: Customers[] }) {
               <CurrencyDollarIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
             </div>
           </div>
-          {/* {state.errors?.amount ? (
-        <div
-          id="amount-error"
-          aria-live="polite"
-          className="mt-2 text-sm text-red-500"
-        >
-          {state.errors.amount.map((error: string) => (
-            <p key={error}>{error}</p>
-          ))}
-        </div>
-      ) : null} */}
+          {state.errors?.amount ? (
+            <div
+              id="amount-error"
+              aria-live="polite"
+              className="mt-2 text-sm text-red-500"
+            >
+              {state.errors.amount.map((error: string) => (
+                <p key={error}>{error}</p>
+              ))}
+            </div>
+          ) : null}
         </div>
 
         {/* Invoice Status */}
@@ -129,23 +135,23 @@ export default function CreateForm({ customers }: { customers: Customers[] }) {
               </div>
             </div>
           </div>
-          {/* {state.errors?.status ? (
-        <div
-          id="status-error"
-          aria-live="polite"
-          className="mt-2 text-sm text-red-500"
-        >
-          {state.errors.status.map((error: string) => (
-            <p key={error}>{error}</p>
-          ))}
-        </div>
-      ) : null} */}
+          {state.errors?.status ? (
+            <div
+              id="status-error"
+              aria-live="polite"
+              className="mt-2 text-sm text-red-500"
+            >
+              {state.errors.status.map((error: string) => (
+                <p key={error}>{error}</p>
+              ))}
+            </div>
+          ) : null}
         </fieldset>
-        {/* {state?.message && (
-      <p id="message-error" className="mt-2 text-sm text-red-500">
-        {state?.message}
-      </p>
-    )} */}
+        {state?.message && (
+          <p id="message-error" className="mt-2 text-sm text-red-500">
+            {state?.message}
+          </p>
+        )}
       </div>
       <div className="mt-6 flex justify-end gap-4">
         <Link

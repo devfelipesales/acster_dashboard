@@ -21,6 +21,13 @@ const config: Config = {
         xs: "576px",
       },
     },
+    keyframes: {
+      shimmer: {
+        "100%": {
+          transform: "translateX(100%)",
+        },
+      },
+    },
   },
   plugins: [require("flowbite/plugin")],
 };
