@@ -35,7 +35,7 @@ export default function RadioStatus() {
               value=""
               name="status"
               onChange={(e) => handleChange(e.currentTarget.value)}
-              className="h-4 w-4 border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500"
+              className="h-4 w-4 border-gray-300 bg-gray-100 text-green-600 focus:ring-2 focus:ring-green-500"
             />
             <label
               htmlFor="all"
@@ -51,7 +51,7 @@ export default function RadioStatus() {
             value="PENDING"
             name="status"
             onChange={(e) => handleChange(e.currentTarget.value)}
-            className="h-4 w-4 border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500"
+            className="h-4 w-4 border-gray-300 bg-gray-100 text-green-600 focus:ring-2 focus:ring-green-500"
           />
           <label
             htmlFor="pending"
@@ -68,7 +68,7 @@ export default function RadioStatus() {
             value="PAID"
             name="status"
             onChange={(e) => handleChange(e.currentTarget.value)}
-            className="h-4 w-4 border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500"
+            className="h-4 w-4 border-gray-300 bg-gray-100 text-green-600 focus:ring-2 focus:ring-green-500"
           />
           <label
             htmlFor="paid"
