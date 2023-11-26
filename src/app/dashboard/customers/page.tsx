@@ -22,6 +22,7 @@ export default async function CustomersPage({
           <TableCustomers query={query} />
         </Suspense>
       </div>
+      <div></div>
     </main>
   );
 }
