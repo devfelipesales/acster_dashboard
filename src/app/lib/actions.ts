@@ -53,7 +53,7 @@ export async function createInvoice(prevState: State, formData: FormData) {
       data: {
         customerId: customerId,
         status: status,
-        amount: amountNumber,
+        amount: amountNumber as number,
       },
     });
   } catch (error) {
@@ -117,7 +117,7 @@ export async function updateInvoice(
       data: {
         customerId: customerId,
         status: status,
-        amount: amountNumber,
+        amount: amountNumber as number,
       },
     });
 
@@ -125,9 +125,6 @@ export async function updateInvoice(
     revalidatePath("/dashboard/invoices");
     redirect("/dashboard/invoices");
   } catch (error) {
-    // return {
-    //   message: "Erro no Banco de Dados: Falha ao atualizar a fatura",
-    // };
     returnData.error = true;
     returnData.message = "Erro no Banco de Dados: Falha ao atualizar a fatura";
     return returnData;

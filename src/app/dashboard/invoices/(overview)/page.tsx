@@ -5,6 +5,8 @@ import { CreateInvoice } from "@/app/UI/invoices/buttons";
 import { Suspense } from "react";
 import { InvoicesTableSkeleton } from "@/app/UI/skeletons";
 import RadioStatus from "@/app/UI/RadioStatus";
+import PaginationComponent from "@/app/UI/invoices/Pagination";
+import { fetchInvoicePages } from "@/app/lib/fetchData";
 
 export default async function InvoicePage({
   searchParams,
@@ -18,7 +20,7 @@ export default async function InvoicePage({
   const query = searchParams?.query || "";
   const status = searchParams?.status || "";
   const currentPage = Number(searchParams?.page) || 1;
-  // const totalPages = fetchCount(query)
+  const totalPages = await fetchInvoicePages(query, status);
 
   return (
     <main className="mt-8 flex flex-col gap-8 overflow-hidden p-3 md:mt-0 md:p-8 ">
@@ -32,13 +34,17 @@ export default async function InvoicePage({
           <RadioStatus />
         </div>
 
-        <Suspense fallback={<InvoicesTableSkeleton />}>
+        <Suspense
+          key={query + currentPage}
+          fallback={<InvoicesTableSkeleton />}
+        >
           <TableInvoices
             query={query}
             status={status}
             currentPage={currentPage}
           />
         </Suspense>
+        <PaginationComponent totalPages={totalPages} />
       </div>
     </main>
   );

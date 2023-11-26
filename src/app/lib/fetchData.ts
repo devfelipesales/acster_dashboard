@@ -3,6 +3,8 @@ import { ITableCustomers } from "./definitions";
 import { unstable_noStore as noStore } from "next/cache";
 import { InvoiceStatus } from "@prisma/client";
 
+const ITEMS_PER_PAGE = 6;
+
 export async function fetchInvoices() {
   noStore();
   return await prismaClient.invoice.findMany({
@@ -25,11 +27,21 @@ export async function fetchLatestInvoices() {
   });
 }
 
-export async function fetchFilteredInvoices(query: string, status: string) {
+export async function fetchFilteredInvoices(
+  query: string,
+  status: string,
+  currentPage: number,
+) {
   noStore();
+  let skip = 0;
+  if (currentPage > 1) {
+    skip = (currentPage - 1) * ITEMS_PER_PAGE;
+  }
 
   if (!status) {
     return await prismaClient.invoice.findMany({
+      skip: skip,
+      take: ITEMS_PER_PAGE,
       where: {
         customer: {
           name: {
@@ -52,6 +64,8 @@ export async function fetchFilteredInvoices(query: string, status: string) {
   } else {
     const l_status = status as InvoiceStatus;
     return await prismaClient.invoice.findMany({
+      skip: skip,
+      take: ITEMS_PER_PAGE,
       where: {
         status: l_status,
         customer: {
@@ -73,6 +87,53 @@ export async function fetchFilteredInvoices(query: string, status: string) {
       },
     });
   }
+}
+
+export async function fetchInvoicePages(query: string, status: string) {
+  noStore();
+  let count = 0;
+  if (!status) {
+    count = await prismaClient.invoice.count({
+      where: {
+        customer: {
+          name: {
+            contains: query,
+            mode: "insensitive",
+          },
+          email: {
+            contains: query,
+            mode: "insensitive",
+          },
+        },
+      },
+      orderBy: {
+        updatedAt: "desc",
+      },
+    });
+  } else {
+    const l_status = status as InvoiceStatus;
+    count = await prismaClient.invoice.count({
+      where: {
+        status: l_status,
+        customer: {
+          name: {
+            contains: query,
+            mode: "insensitive",
+          },
+          email: {
+            contains: query,
+            mode: "insensitive",
+          },
+        },
+      },
+      orderBy: {
+        updatedAt: "desc",
+      },
+    });
+  }
+
+  const totalPages = Math.ceil(count / ITEMS_PER_PAGE);
+  return totalPages;
 }
 
 export async function fetchCardData() {

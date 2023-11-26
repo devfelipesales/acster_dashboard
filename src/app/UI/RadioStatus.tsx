@@ -10,6 +10,7 @@ export default function RadioStatus() {
   const params = new URLSearchParams(searchParams);
 
   const handleChange = (status: string) => {
+    params.set("page", "1");
     if (status) {
       params.set("status", status);
     } else {

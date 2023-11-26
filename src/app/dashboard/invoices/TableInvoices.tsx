@@ -15,7 +15,7 @@ export default async function TableInvoices({
   status: string;
   currentPage: number;
 }) {
-  const invoices = await fetchFilteredInvoices(query, status);
+  const invoices = await fetchFilteredInvoices(query, status, currentPage);
   return (
     <>
       <div className="block lg:hidden">
