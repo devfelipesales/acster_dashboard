@@ -138,35 +138,36 @@ export async function fetchInvoicePages(query: string, status: string) {
 
 export async function fetchCardData() {
   noStore();
-  const paidGroupBy = await prismaClient.invoice.aggregate({
-    _sum: {
-      amount: true,
-    },
-    where: {
-      status: "PAID",
-    },
-  });
 
-  const pendingGroupBy = await prismaClient.invoice.aggregate({
-    _sum: {
-      amount: true,
-    },
-    where: {
-      status: "PENDING",
-    },
-  });
-
-  const customersCount = await prismaClient.customers.aggregate({
-    _count: {
-      id: true,
-    },
-  });
-
-  const invoicesCount = await prismaClient.invoice.aggregate({
-    _count: {
-      id: true,
-    },
-  });
+  const [paidGroupBy, pendingGroupBy, customersCount, invoicesCount] =
+    await Promise.all([
+      prismaClient.invoice.aggregate({
+        _sum: {
+          amount: true,
+        },
+        where: {
+          status: "PAID",
+        },
+      }),
+      prismaClient.invoice.aggregate({
+        _sum: {
+          amount: true,
+        },
+        where: {
+          status: "PENDING",
+        },
+      }),
+      prismaClient.customers.aggregate({
+        _count: {
+          id: true,
+        },
+      }),
+      prismaClient.invoice.aggregate({
+        _count: {
+          id: true,
+        },
+      }),
+    ]);
 
   return {
     paidGroupBy,
