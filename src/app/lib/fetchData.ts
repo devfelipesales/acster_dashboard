@@ -176,9 +176,19 @@ export async function fetchCardData() {
   };
 }
 
-export async function fetchTableCustomers() {
+export async function fetchTableCustomers(query: string) {
   noStore();
   const customers = await prismaClient.customers.findMany({
+    where: {
+      name: {
+        contains: query,
+        mode: "insensitive",
+      },
+      email: {
+        contains: query,
+        mode: "insensitive",
+      },
+    },
     select: {
       name: true,
       email: true,

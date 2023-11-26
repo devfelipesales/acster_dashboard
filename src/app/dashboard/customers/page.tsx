@@ -4,14 +4,22 @@ import TableCustomers from "./TableCustomers";
 import { Suspense } from "react";
 import { CustomerTableSkeleton } from "@/app/UI/skeletons";
 
-export default async function CustomersPage() {
+export default async function CustomersPage({
+  searchParams,
+}: {
+  searchParams?: {
+    query?: string;
+  };
+}) {
+  const query = searchParams?.query || "";
+
   return (
     <main className="mt-8 flex flex-col gap-8 overflow-hidden p-3 md:mt-0 md:p-8 ">
       <h1 className={`${Fonts.lusitana.className} text-2xl`}>Clientes</h1>
       <div className="flex grow flex-col gap-3">
         <Search placeholder="Pequise clientes..." />
         <Suspense fallback={<CustomerTableSkeleton />}>
-          <TableCustomers />
+          <TableCustomers query={query} />
         </Suspense>
       </div>
     </main>

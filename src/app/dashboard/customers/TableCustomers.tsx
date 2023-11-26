@@ -2,8 +2,8 @@ import { formatCurrency } from "@/app/lib/utils";
 import Image from "next/image";
 import { fetchTableCustomers } from "@/app/lib/fetchData";
 
-export default async function TableCustomers() {
-  const customers = await fetchTableCustomers();
+export default async function TableCustomers({ query }: { query: string }) {
+  const customers = await fetchTableCustomers(query);
   return (
     <>
       <div className="block lg:hidden">
