@@ -21,7 +21,8 @@ export default function LoginForm() {
   const [error, setError] = React.useState("");
   const searchParams = useSearchParams();
   const router = useRouter();
-  const callbackUrl = searchParams.get("callbackUrl") || "/dashboard";
+  // const callbackUrl = searchParams.get("callbackUrl") || "/dashboard";
+  const callbackUrl = "/dashboard";
 
   async function handleSubmit(event: React.FormEvent<CustomForm>) {
     event.preventDefault();
