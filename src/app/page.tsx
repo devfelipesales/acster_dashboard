@@ -36,15 +36,15 @@ export default function Home() {
         </div>
         <div className="flex items-center justify-center">
           <Image
-            src="/hero-mobile.png"
-            alt="Cecy main photo"
+            src="/homemobile.png"
+            alt="Acster main photo mobile"
             className="block md:hidden"
             width={460}
             height={520}
           ></Image>
           <Image
-            src="/hero-desktop.png"
-            alt="Cecy main photo"
+            src="/homedesktop.png"
+            alt="Acster main photo"
             className="hidden md:block"
             width={1000}
             height={760}
