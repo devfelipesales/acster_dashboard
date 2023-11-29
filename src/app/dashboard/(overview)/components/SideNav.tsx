@@ -1,7 +1,7 @@
 import AcsterLogo from "@/app/UI/AcsterLogo";
 import React from "react";
 import NavLinks from "./NavLinks";
-import { PowerIcon } from "@heroicons/react/24/outline";
+import SignOutButton from "@/app/UI/SignOutButton";
 
 export default function SideNav() {
   return (
@@ -16,12 +16,13 @@ export default function SideNav() {
           {/* Pode-se criar uma div fazia para preencher o espaço entre os items de cima e o item que ficará em baixo */}
           {/* Ou utilizar margin-top:auto no último item */}
           {/* <div className="hidden h-auto w-full grow rounded-md bg-white md:block"></div> */}
-          <form action="" className="md:mt-auto">
+          {/* <form action="" className="md:mt-auto">
             <button className="flex w-full grow items-center justify-center gap-3 rounded-lg bg-slate-50 p-3 font-semibold hover:bg-teal-100 hover:text-emerald-700 md:justify-normal">
               <PowerIcon className="w-6" />
               <p className="hidden md:block">Sair</p>
             </button>
-          </form>
+          </form> */}
+          <SignOutButton />
         </div>
       </div>
     </div>
