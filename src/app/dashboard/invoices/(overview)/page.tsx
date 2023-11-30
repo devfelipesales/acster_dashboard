@@ -7,6 +7,11 @@ import { InvoicesTableSkeleton } from "@/app/UI/skeletons";
 import RadioStatus from "@/app/UI/RadioStatus";
 import PaginationComponent from "@/app/UI/invoices/Pagination";
 import { fetchInvoicePages } from "@/app/lib/fetchData";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Faturas",
+};
 
 export default async function InvoicePage({
   searchParams,

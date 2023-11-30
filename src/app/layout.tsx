@@ -4,8 +4,12 @@ import { Fonts } from "./UI/fonts";
 import { AuthProvider } from "./providers/auth";
 
 export const metadata: Metadata = {
-  title: "Acster",
-  description: "Acster Dashboard",
+  title: {
+    template: "%s | Acster Dashboard",
+    default: "Acster Dashboard",
+  },
+  description: "Acster Dashboard com Next e TypeScript",
+  metadataBase: new URL("https://acster-dashboard.vercel.app/"),
 };
 
 export default function RootLayout({

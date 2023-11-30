@@ -1,7 +1,12 @@
 import { Fonts } from "@/app/UI/fonts";
 import EditForm from "@/app/UI/invoices/Edit-form";
 import { fetchCustomers, fetchInvoiceById } from "@/app/lib/fetchData";
+import { Metadata } from "next";
 import { notFound } from "next/navigation";
+
+export const metadata: Metadata = {
+  title: "Editar Fatura",
+};
 
 export default async function EditInvoicePage({
   params,

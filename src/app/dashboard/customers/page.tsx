@@ -3,6 +3,11 @@ import { Fonts } from "@/app/UI/fonts";
 import TableCustomers from "./TableCustomers";
 import { Suspense } from "react";
 import { CustomerTableSkeleton } from "@/app/UI/skeletons";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Clientes",
+};
 
 export default async function CustomersPage({
   searchParams,

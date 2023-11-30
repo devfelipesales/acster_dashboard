@@ -1,6 +1,11 @@
 import { Fonts } from "@/app/UI/fonts";
 import CreateForm from "@/app/UI/invoices/create-form";
 import { fetchCustomers } from "@/app/lib/fetchData";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Criar Fatura",
+};
 
 export default async function CreateInvoicePage() {
   const customers = await fetchCustomers();

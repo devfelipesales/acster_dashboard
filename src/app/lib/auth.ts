@@ -37,9 +37,6 @@ export const authOptions: NextAuthOptions = {
           return null;
         }
 
-        console.log("auth.ts - usuario autorizado");
-        console.log(`auth.ts - ${(user.id, user.email, user.name)}`);
-
         return {
           id: user.id,
           email: user.email,
