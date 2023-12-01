@@ -1,36 +1,44 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Projeto Acster Dashboard
 
-## Getting Started
+Este é um projeto Dashboard com Next14 e TypeScript. Este projeto tomou como base o curso de Next14 da própria plataforma para por em prática todas as features novas do Next14.
+Foram utilizadas features como server actions, lidando com todos os erros com a página error.tsx, página 404 customizada com not-found.tsx, autenticação com Next Auth, página de loading.tsx, e React Suspense.
+Além disso, foi utilizado mecanismo de pesquisa/busca de dados por meio de url query, sem utilização de useState/useEffect do React. Esse mecanismo possui diversas vantagens, como por exemplo:
 
-First, run the development server:
+1. URLs marcáveis ​​e compartilháveis: como os parâmetros de pesquisa estão na URL, os usuários podem favoritar o estado atual do aplicativo, incluindo suas consultas de pesquisa e filtros, para referência ou compartilhamento futuro.
+2. Renderização do lado do servidor e carregamento inicial: os parâmetros de URL podem ser consumidos diretamente no servidor para renderizar o estado inicial, facilitando o manuseio da renderização do servidor.
+3. Análise e rastreamento: ter consultas de pesquisa e filtros diretamente no URL facilita o rastreamento do comportamento do usuário sem exigir lógica adicional do lado do cliente.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Tecnologias Utilizadas
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+React
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+TypeScript
 
-## Learn More
+Next.js 14
 
-To learn more about Next.js, take a look at the following resources:
+Next Auth
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Postgres
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+Prisma
 
-## Deploy on Vercel
+Flowbite css/react: Uma biblioteca de componentes de UI reutilizáveis e estilizáveis.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Tailwind CSS
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Biblioteca externa para gráficos(recharts)
+
+## Funcionalidades
+
+Login com o NextAuth: Permitimos que os usuários façam login com toda estrutura utilizada pelo Next Auth
+
+Rotas Protegidas: Utilização de middleware para proteger rotas de usuários não autenticados.
+
+Filtro de Pesquisa por query URL: Seleção de dados seguindos os padrões atuais para melhor comportamento do componente
+
+Criação, Leitura, Edição e Exclusão(CRUD): CRUD dos dados de Fatura utilizando server actions.
+
+Gráfico: Gráfico dinâmico com biblioteca externa(Recharts) com base nos dados criados das faturas.
+
+Responsividade: Aplicativo que se adequa às telas dos dispositivos.
